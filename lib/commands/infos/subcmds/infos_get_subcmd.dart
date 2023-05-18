@@ -11,11 +11,11 @@ class InfosGetSubcommand extends Command {
   @override
   String get name => 'get';
   @override
-  String get description => 'Get all infos';
+  String get description => 'RESTFull GET all infos';
 
   @override
   Future<void> run() async {
-    print('Search data...');
+    print('Searching...');
     try {
       final list = await repository.get();
       print('Infos count: ${list.length}');

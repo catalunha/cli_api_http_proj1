@@ -3,8 +3,11 @@ import 'package:cli_api_http_proj1/datasource/datasource.dart';
 import 'package:cli_api_http_proj1/datasource/info_http.dart';
 
 import '../../repositories/info_repository.dart';
+import 'subcmds/infos_delete_subcmd.dart';
 import 'subcmds/infos_get_id_subcmd.dart';
 import 'subcmds/infos_get_subcmd.dart';
+import 'subcmds/infos_post_subcmd.dart';
+import 'subcmds/infos_put_subcmd.dart';
 
 class InfosCommand extends Command {
   @override
@@ -23,12 +26,15 @@ class InfosCommand extends Command {
       addSubcommand(InfosGetIdSubcommand(
         repository: infoRepository,
       ));
-      // addSubcommand(InfosSaveSubcommand(
-      //   studentRepository: studentRepository,
-      // ));
-      // addSubcommand(InfosDeleteSubcommand(
-      //   studentRepository: studentRepository,
-      // ));
+      addSubcommand(InfosPostSubcommand(
+        repository: infoRepository,
+      ));
+      addSubcommand(InfosPutSubcommand(
+        repository: infoRepository,
+      ));
+      addSubcommand(InfosDeleteSubcommand(
+        repository: infoRepository,
+      ));
     } catch (e) {
       print('Infos SubComandos com erro. Veja -h');
     }

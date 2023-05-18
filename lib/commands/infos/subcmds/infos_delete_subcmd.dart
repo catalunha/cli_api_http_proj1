@@ -2,18 +2,18 @@ import 'package:args/command_runner.dart';
 
 import '../../../repositories/repository.dart';
 
-class InfosGetIdSubcommand extends Command {
+class InfosDeleteSubcommand extends Command {
   final Repository repository;
-  InfosGetIdSubcommand({
+  InfosDeleteSubcommand({
     required this.repository,
   }) {
     argParser.addOption('id', abbr: 'i', help: 'Informe o Id da info');
   }
 
   @override
-  String get name => 'getid';
+  String get name => 'delete';
   @override
-  String get description => 'RESTFull GET Info by Id';
+  String get description => 'RESTFull DELETE Info by id';
 
   @override
   Future<void> run() async {
@@ -22,13 +22,12 @@ class InfosGetIdSubcommand extends Command {
       print('Informe o Id da Info');
       return;
     }
-    print('Searching...');
+    print('Deleting...');
     try {
-      final info = await repository.getId(id);
-      print('id: ${info.id} | typeString: ${info.typeString}');
-      print(info.toString());
+      await repository.delete(id);
+      print('Info id: $id deleted');
     } catch (e) {
-      print('Erro em GetId da Info');
+      print('Erro em Delete Info');
       print(e);
     }
   }

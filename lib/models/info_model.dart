@@ -88,7 +88,9 @@ class InfoModel {
       typeOther: map['typeOther'] != null
           ? OtherModel.fromMap(map['typeOther'])
           : null,
-      typeListString: List<String>.from(map['typeListString']),
+      typeListString: map['typeListString'] != null
+          ? List<String>.from(map['typeListString'])
+          : null,
       typeListOther: map['typeListOther'] != null
           ? List<OtherModel>.from(
               map['typeListOther']?.map((x) => OtherModel.fromMap(x)))
