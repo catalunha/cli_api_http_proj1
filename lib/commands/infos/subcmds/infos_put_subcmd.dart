@@ -1,3 +1,4 @@
+import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
@@ -37,12 +38,22 @@ class InfosPutSubcommand extends Command {
     try {
       final filePath = argResults!['file'];
       final infoString = File(filePath).readAsStringSync();
+      // json.decode(infoString);
       final model = InfoModel.fromJson(infoString);
       await repository.put(id, model);
       print('Info add');
-    } catch (e) {
+    } on FormatException catch (e, s) {
+      print('Erro na formatação do json');
+      print(e);
+      print(s);
+    } on PathNotFoundException catch (e, s) {
+      print('Não achei o arquivo');
+      print(e);
+      print(s);
+    } catch (e, s) {
       print('Erro em Put Info');
       print(e);
+      print(s);
     }
   }
 }
