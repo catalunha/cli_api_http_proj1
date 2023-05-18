@@ -5,5 +5,6 @@ abstract class Repository {
   Future<InfoModel> getId(String id);
   Future<void> post(InfoModel model);
   Future<void> put(String id, InfoModel model);
+  Future<void> patch(String id, Map<String, dynamic> map);
   Future<void> delete(String id);
 }

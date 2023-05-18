@@ -19,5 +19,7 @@ class InfoRepository extends Repository {
   @override
   Future<void> put(String id, InfoModel model) => dataSource.put(id, model);
   @override
+  Future<void> patch(String id, map) => dataSource.patch(id, map);
+  @override
   Future<void> delete(String id) => dataSource.delete(id);
 }

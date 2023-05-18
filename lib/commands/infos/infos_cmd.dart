@@ -6,6 +6,7 @@ import '../../repositories/info_repository.dart';
 import 'subcmds/infos_delete_subcmd.dart';
 import 'subcmds/infos_get_id_subcmd.dart';
 import 'subcmds/infos_get_subcmd.dart';
+import 'subcmds/infos_patch_subcmd.dart';
 import 'subcmds/infos_post_subcmd.dart';
 import 'subcmds/infos_put_subcmd.dart';
 
@@ -30,6 +31,9 @@ class InfosCommand extends Command {
         repository: infoRepository,
       ));
       addSubcommand(InfosPutSubcommand(
+        repository: infoRepository,
+      ));
+      addSubcommand(InfosPatchSubcommand(
         repository: infoRepository,
       ));
       addSubcommand(InfosDeleteSubcommand(

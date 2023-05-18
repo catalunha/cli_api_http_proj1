@@ -2,13 +2,12 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:args/command_runner.dart';
-import 'package:cli_api_http_proj1/models/info_model.dart';
 
 import '../../../repositories/repository.dart';
 
-class InfosPutSubcommand extends Command {
+class InfosPatchSubcommand extends Command {
   final Repository repository;
-  InfosPutSubcommand({
+  InfosPatchSubcommand({
     required this.repository,
   }) {
     argParser.addOption('id',
@@ -18,9 +17,9 @@ class InfosPutSubcommand extends Command {
   }
 
   @override
-  String get name => 'put';
+  String get name => 'patch';
   @override
-  String get description => 'RESTFull PUT Info';
+  String get description => 'RESTFull PATCH Info';
 
   @override
   Future<void> run() async {
@@ -38,8 +37,7 @@ class InfosPutSubcommand extends Command {
     try {
       final filePath = argResults!['file'];
       final infoString = File(filePath).readAsStringSync();
-      final model = InfoModel.fromJson(infoString);
-      await repository.put(id, model);
+      await repository.patch(id, json.decode(infoString));
       print('Info update');
     } on FormatException catch (e, s) {
       print('Erro na formatação do json');
@@ -50,7 +48,7 @@ class InfosPutSubcommand extends Command {
       print(e);
       print(s);
     } catch (e, s) {
-      print('Erro em Put Info');
+      print('Erro em Path Info');
       print(e);
       print(s);
     }

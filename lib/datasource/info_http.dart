@@ -55,6 +55,17 @@ class InfoHttp extends DataSource {
   }
 
   @override
+  Future<void> patch(String id, Map<String, dynamic> map) async {
+    final response = await http.put(
+        Uri.parse('http://localhost:8080/infos/$id'),
+        body: json.encode(map),
+        headers: {'content-type': 'application/json'});
+    if (response.statusCode != 200) {
+      throw Exception();
+    }
+  }
+
+  @override
   Future<void> delete(String id) async {
     final response = await http.delete(
       Uri.parse('http://localhost:8080/infos/$id'),
