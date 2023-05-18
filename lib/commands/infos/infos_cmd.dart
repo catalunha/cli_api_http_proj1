@@ -1,8 +1,9 @@
 import 'package:args/command_runner.dart';
 import 'package:cli_api_http_proj1/datasource/datasource.dart';
-import 'package:cli_api_http_proj1/datasource/info_http.dart';
+import 'package:cli_api_http_proj1/datasource/info_http_datasource.dart';
 
 import '../../repositories/info_repository.dart';
+import '../../repositories/repository.dart';
 import 'subcmds/infos_delete_subcmd.dart';
 import 'subcmds/infos_get_id_subcmd.dart';
 import 'subcmds/infos_get_subcmd.dart';
@@ -18,26 +19,26 @@ class InfosCommand extends Command {
 
   InfosCommand() {
     try {
-      final DataSource dataSource = InfoHttp();
-      final InfoRepository infoRepository =
-          InfoRepository(dataSource: dataSource);
+      // final DataSource dataSource = InfoDio();
+      final DataSource dataSource = InfoHttpDataSource();
+      final Repository repository = InfoRepository(dataSource: dataSource);
       addSubcommand(InfosGetSubcommand(
-        repository: infoRepository,
+        repository: repository,
       ));
       addSubcommand(InfosGetIdSubcommand(
-        repository: infoRepository,
+        repository: repository,
       ));
       addSubcommand(InfosPostSubcommand(
-        repository: infoRepository,
+        repository: repository,
       ));
       addSubcommand(InfosPutSubcommand(
-        repository: infoRepository,
+        repository: repository,
       ));
       addSubcommand(InfosPatchSubcommand(
-        repository: infoRepository,
+        repository: repository,
       ));
       addSubcommand(InfosDeleteSubcommand(
-        repository: infoRepository,
+        repository: repository,
       ));
     } catch (e) {
       print('Infos SubComandos com erro. Veja -h');

@@ -4,7 +4,7 @@ import 'package:cli_api_http_proj1/datasource/datasource.dart';
 import 'package:http/http.dart' as http;
 import '../models/info_model.dart';
 
-class InfoHttp extends DataSource {
+class InfoHttpDataSource extends DataSource {
   @override
   Future<List<InfoModel>> get() async {
     final response = await http.get(Uri.parse('http://localhost:8080/infos'));
